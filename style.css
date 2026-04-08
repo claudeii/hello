@@ -1,0 +1,628 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #1A3061;
+    --beige: #E6DED0;
+}
+
+body {
+    background-color: var(--beige);
+    color: var(--navy);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh; 
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.top-bar {
+    background-color: var(--navy);
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    color: var(--beige);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1;
+    position: relative;
+    transition: color 0.3s;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* The Underline */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 8px;
+    left: 0;
+    background-color: var(--beige);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+/* When the category is active */
+.nav-item.active-link::after {
+    width: 100%;
+}
+
+.nav-item.active-link {
+    color: #fff; /* Brighten the text when active */
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 70px 20px 80px 20px;
+}
+
+.sub-headline {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.main-name {
+    margin-bottom: 20px;
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.statement {
+    font-size: 1.2rem;
+    font-weight: 600;
+    max-width: 700px;
+    line-height: 1.4;
+    margin-top: 50px;
+}
+
+/* --- About Section --- */
+.about-section {
+    min-height: auto; 
+    padding: 60px 10% 40px 10%; 
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center; 
+    gap: 80px;
+}
+
+.about-text {
+    width: 600px; 
+    flex-shrink: 0;
+}
+
+.about-text h2, .projects-section h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--navy);
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.about-image {
+    width: 450px;
+    flex-shrink: 0; 
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* --- Projects Section --- */
+.projects-section {
+    padding: 40px 10% 40px 10%; 
+    background-color: var(--beige);
+}
+
+.projects-section h2 {
+    padding-top: 0; 
+    text-align: left;         
+    letter-spacing: 2px;     
+}
+
+.projects-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.project-card {
+    background-color: var(--navy);
+    color: var(--beige);
+    width: 300px;
+    height: 450px;
+    border-radius: 8px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    background-color: #1E3A7A;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(230, 222, 208, 0.3); /* Highlights the edges */
+}
+
+/* --- Modal Styles --- */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow-y: auto; 
+    /* Centers the content box vertically if it's shorter than the screen */
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+}
+
+/* --- Optimized Modal Content --- */
+.modal-content {
+    background-color: var(--navy);
+    margin: 3% auto; /* pull everything up closer to the top bar */
+    padding: 60px 40px 40px 40px; /* large top padding to make room for X */
+    width: 90%;
+    max-width: 1400px; /* Prevents modal from getting too wide on huge monitors */
+    border-radius: 8px;
+    position: relative;
+    color: var(--beige);
+    overflow: hidden; /* prevents messy overlap when closing */
+}
+
+/* Specific styling for the project description title within the modal */
+.modal-content h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center; /* THE FIX: Centers the 'Server Management Automation' title */
+}
+
+/* 1. Overall side-by-side flex layout for text vs images */
+.modal-body-content {
+    display: flex;
+    flex-direction: row;
+    gap: 40px; /* Space between text column and image column */
+    align-items: flex-start; /* Aligns contents to the top */
+}
+
+.modal-text, .modal-text-bottom {
+    flex: 1;
+    width: 100%;
+}
+
+.modal-text ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.modal-text li, .modal-text-bottom li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    /* This ensures the text only wraps when it hits the image boundary */
+    white-space: normal; 
+    text-align: left;
+}
+
+/* --- THE IMAGE LAYOUT MECHANICS --- */
+
+/* 2. Side-by-side flex layout for the images themselves (large main vs sub stack) */
+.modal-images {
+    flex: 1 1 50%; /* The images area takes up the other 50% */
+    display: flex;
+    flex-direction: row; /* Desktop layout: large main left, sub-stack right */
+    gap: 15px; /* Space between the main image and the sub-images column */
+    justify-content: flex-end; /* Keep images aligned to the right side of the container */
+}
+
+/* --- Image Alignment Polish --- */
+.modal-images {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* This keeps images from stretching if the text is very long */
+    align-self: flex-start; 
+}
+
+.modal-img-main {
+    width: calc(65% - 7.5px);
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.modal-img-sub {
+    width: calc(35% - 7.5px);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-img-sub img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* Container for top-to-bottom layout */
+.modal-body-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+
+/* Row for the two side-by-side images */
+.modal-images-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.portfolio-img {
+    width: 48%; /* Adjusts so two images fit side-by-side with a gap */
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* Centered text area for the portfolio */
+.modal-text-bottom {
+    width: 100%;
+    max-width: none;
+}
+
+.modal-text-bottom ul {
+    list-style-type: disc;
+    padding-left: 25px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.modal-text-bottom li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    display: list-item;
+    width: 100%;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Ensure the X button Still Works and Looks Good */
+.close-button {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--beige);
+    cursor: pointer;
+    z-index: 2100; /* Stays above the modal content */
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1150px) {
+    .about-section {
+        flex-direction: column; 
+        text-align: center;
+        gap: 40px;
+    }
+    .about-text { width: 90%; }
+    .about-image { width: 100%; justify-content: center; }
+
+    .modal-body-content {
+        flex-direction: column;
+    }
+    .modal-images {
+        width: 100%;
+    }
+}
+
+/* --- Skills Section --- */
+.skills-section {
+    padding: 50px 10% 40px 10%;
+    background-color: var(--beige);
+}
+
+.skills-container {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skills-text {
+    flex: 1;
+}
+
+.skills-text h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.skills-text ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.skills-text li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+/* --- Logo Grid Styling --- */
+.skills-logos {
+    flex: 1;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 30px;
+    align-items: center;
+    justify-items: center;
+}
+
+.skill-icon {
+    width: 80px; /* Adjust size based on your images */
+    height: auto;
+    filter: grayscale(20%); /* Optional: gives a slightly more uniform look */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.skill-icon:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .skills-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .skills-text ul {
+        text-align: left;
+        display: inline-block;
+    }
+}
+/* Force the grid to stay at 3 columns for that 3x3 look */
+.logo-grid {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px; /* Increased gap slightly to fill the space better */
+}
+
+/* Enlarge the VirtualBox logo specifically */
+.logo-grid img:first-child {
+    width: 140px; /* Adjust this number until it looks 'just right' to you */
+}
+
+/* Adjust the rest to stay consistent */
+.skill-icon {
+    width: 100px; /* Slightly larger base size for the other logos */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* This class will be triggered by JavaScript */
+.move-highlight {
+    transform: translateX(15px); /* Moves just the text to the right */
+    color: #254285;              /* Changes color to show it's active */
+    font-weight: bold;
+    transition: all 0.3s ease;   /* Makes it smooth */
+}
+
+/* Ensure the list item is capable of moving */
+#database-text, #networking-text, #hardware-text, #tpf-text,
+#systems-text, #programming-text, #designandmultimedia-text {
+    transition: all 0.3s ease;
+    display: list-item; /* Keeps it behaving like a bullet point */
+}
+
+/* 1. The 'Hidden' State (Default) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px); /* Slight slide up effect */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    visibility: hidden; /* Prevents clicking on invisible elements */
+}
+
+/* 2. The 'Visible' State (When JS adds the .active class) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* --- Certifications Section --- */
+.certifications-section {
+    padding: 80px 10%;
+    background-color: var(--beige);
+    text-align: center; /* Centers all text globally */
+}
+
+.certifications-section h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 60px;
+    text-align: left; /* Keeps the section title on the left per your design */
+    letter-spacing: 2px;
+}
+
+/* THE FIX: Vertical centering logic */
+.cert-vertical-stack {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center;    /* Centers them horizontally */
+    gap: 80px;              /* Space between each certification */
+}
+
+.cert-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+}
+
+.cert-item h3 {
+    font-size: 1.3rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+.issuer, .date, .status {
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 5px;
+}
+
+.note, .status {
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Badge specific styling */
+.cisco-badge {
+    width: 160px; /* Matches the size in your screenshot */
+    margin-bottom: 15px;
+}
+
+.badge-link {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.badge-link:hover {
+    transform: scale(1.05);
+}
+
+.tap-this {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: var(--navy);
+    margin-bottom: 10px;
+}
+
+/* --- Smaller Footer Bar --- */
+.footer-bar {
+    background-color: var(--navy);
+    padding: 15px 0; /* Reduced from 30px to 15px */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.contact-icons {
+    display: flex;
+    gap: 30px; /* Slightly tighter spacing */
+}
+
+.footer-icon img {
+    width: 28px; /* Reduced from 35px to 28px */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.footer-icon:hover img {
+    transform: translateY(-3px);
+}
+
+/* Ensure the footer is at the very bottom if content is short */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer-bar {
+    margin-top: auto;
+}
+
+.contact-modal-size {
+    max-width: 400px; /* Smaller than the project modal */
+    min-height: auto;
+    text-align: center;
+    padding: 30px;
+}
+
+.footer-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.footer-icon:hover {
+    transform: scale(1.2);
+}
