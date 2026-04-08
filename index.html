@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claudette | Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-bar"></div>
+        <div class="top-bar">
+    <div class="nav-links">
+        <a href=".hero-section" class="nav-item">HOME</a>
+        <a href=".about-section" class="nav-item">ABOUT ME</a>
+        <a href=".projects-section" class="nav-item">PROJECTS</a>
+        <a href=".skills-section" class="nav-item">SKILLS</a>
+        <a href=".certifications-section" class="nav-item">CERTIFICATIONS</a>
+    </div>
+</div>
+
+    <section class="hero-section">
+        <div class="hero-content reveal">
+            <p class="sub-headline">Hi! I am</p>
+            <h1 class="main-name">CLAUDETTE</h1>
+            <p class="statement">
+                I believe that continuous learning, curiosity, and dedication are key to becoming a successful engineer.
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section reveal">
+        
+        <div class="about-text">
+            <h2>ABOUT ME</h2>
+            <p> I am Claudette P. Capundan, a third-year student at the Polytechnic University of 
+                the Philippines – Sta. Mesa, currently pursuing a Bachelor of Science in Computer 
+                Engineering. I am an aspiring future engineer with a strong interest in technology, networking, 
+                and cybersecurity. I enjoy learning how systems work, solving technical problems, and continuously improving 
+                my skills in both software and hardware development.</p>
+           <p>
+           </p>
+                <p>Throughout my academic journey, I have been passionate about learning how computers, networks, and digital 
+                systems work together to solve real-world problems. I continuously strive to improve my technical skills and 
+                gain practical experience that will help me grow into a competent and innovative professional in the field of 
+                engineering.</p>
+        </div>
+        <div class="about-image">
+            <img src="claudette.png" alt="claudette">
+        </div>
+    </section>
+
+    <section class="projects-section reveal">
+    <h2>PROJECTS</h2>
+    
+    <div class="projects-grid">
+        <div class="project-card" onclick="openProject('server-project')">
+            <h3>Server Management Automation</h3>
+            <p class="role">System & Network Administrator</p>
+        </div>
+
+        <div class="project-card" onclick="openProject('python-project')">
+            <h3>PUPian the Explorer: A Python-Guided Navigation Game</h3>
+            <p class="role">UI/UX Designer & Character Designer</p>
+        </div>
+
+        <div class="project-card" onclick="openProject('portfolio-project')">
+            <h3>Web Page Portfolio</h3>
+            <p class="role">UI/UX Design Lead / Visual Designer</p>
+        </div>
+    </div>
+</section>
+
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <div id="modal-body">
+            </div>
+    </div>
+</div>
+<script src="script.js"></script>
+
+
+<section class="skills-section reveal">
+    <div class="skills-container">
+        <div class="skills-text">
+            <h2>SKILLS</h2>
+            <ul>
+                <li id="networking-text"><strong>Networking:</strong> IP addressing, subnetting, network configuration, troubleshooting</li>
+                <li id="hardware-text"><strong>Network Hardware:</strong> Cisco routers and switches (configuration and setup)</li>
+                <li id="tpf-text"><strong>Tools & Platforms:</strong> Cisco Packet Tracer, VMware, VirtualBox</li>
+                <li id="systems-text"><strong>Systems:</strong> Windows configuration, basic server management</li>
+                <li id="programming-text"><strong>Programming:</strong> Python, HTML</li>
+                <li id="database-text"><strong>Database:</strong> SQL (basic queries)</li>
+                <li id="dm-text"><strong>Design & Multimedia:</strong> Canva, CapCut, Adobe</li>
+            </ul>
+        </div>
+
+        <div class="skills-logos">
+            <div class="logo-grid">
+                <img src="virtualbox.png" id="vb-logo" alt="VirtualBox" class="skill-icon">
+                <img src="canva.png" id="cv-logo" alt="Canva" class="skill-icon">
+                <img src="cisco.webp" id="csc-logo" alt="Cisco" class="skill-icon">
+                <img src="sql.png" id="sql-logo" alt="SQL" class="skill-icon">
+                <img src="windows.png" id="w-logo" alt="Windows" class="skill-icon">
+                <img src="capcut.png" id="cpt-logo" alt="CapCut" class="skill-icon">
+                <img src="python.png" id="pyt-logo" alt="Python" class="skill-icon">
+                <img src="html.png" id="html-logo" alt="HTML5" class="skill-icon">
+                <img src="adobe.png" id="adb-logo" alt="Adobe" class="skill-icon">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="certifications-section reveal">
+    <div class="certifications-container">
+        <h2>CERTIFICATIONS</h2>
+        
+        <div class="cert-vertical-stack">
+            <div class="cert-item">
+                <h3>Fortinet Certified Fundamentals in Cybersecurity</h3>
+                <p class="issuer">Fortinet Training Institute</p>
+                <p class="date">2024 - 2026</p>
+                <p class="note">Certificate available upon request</p>
+            </div>
+
+            <div class="cert-item">
+                <a href="https://www.credly.com/badges/b84cc532-ed05-4142-9f49-ff24bef30d3e" 
+                   target="_blank" 
+                   class="badge-link">
+                    <img src="ciscobadge.png" alt="Cisco CCNA Badge" class="cisco-badge">
+                    <p class="tap-this">Tap this</p>
+                </a>
+                <h3>CCNA: Introduction to Networks</h3>
+                <p class="issuer">Cisco Networking Academy</p>
+                <p class="date">2026</p>
+            </div>
+
+            <div class="cert-item">
+                <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
+                <p class="issuer">Cisco Networking Academy</p>
+                <p class="status">in progress</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+<footer class="footer-bar">
+    <div class="contact-icons">
+        <div class="footer-icon" onclick="openContact('email')">
+            <img src="email.png" alt="Email">
+        </div>
+        <div class="footer-icon" onclick="openContact('call')">
+            <img src="call.png" alt="Call">
+        </div>
+        <a href="https://www.facebook.com/capundan.claudette" target="_blank" class="footer-icon">
+            <img src="fb.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/cclaudei/" target="_blank" class="footer-icon">
+            <img src="ig.png" alt="Instagram">
+        </a>
+    </div>
+</footer>
+
+<div id="contactModal" class="modal">
+    <div class="modal-content contact-modal-size">
+        <span class="close-button" onclick="closeContactModal()">&times;</span>
+        <div id="contact-modal-body">
+            </div>
+    </div>
+</div>
+
+</html>
+
